@@ -4,18 +4,30 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface CardProps
+  extends Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    | "onDrag"
+    | "onDragStart"
+    | "onDragEnd"
+    | "onAnimationStart"
+    | "onAnimationEnd"
+    | "onAnimationIteration"
+  > {
   spotlight?: boolean;
   gradient?: boolean;
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, spotlight = true, gradient = false, children, ...props }, ref) => {
+  (
+    { className, spotlight = true, gradient = false, children, ...props },
+    ref
+  ) => {
     const cardRef = React.useRef<HTMLDivElement>(null);
 
     React.useEffect(() => {
       if (!spotlight) return;
-      
+
       const card = cardRef.current;
       if (!card) return;
 
@@ -34,7 +46,8 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     return (
       <motion.div
         ref={(node) => {
-          (cardRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+          (cardRef as React.MutableRefObject<HTMLDivElement | null>).current =
+            node;
           if (typeof ref === "function") ref(node);
           else if (ref) ref.current = node;
         }}
@@ -59,4 +72,3 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
 Card.displayName = "Card";
 
 export { Card };
-

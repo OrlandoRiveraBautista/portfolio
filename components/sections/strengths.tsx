@@ -1,13 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { 
-  Layers, 
-  Paintbrush, 
-  Cloud, 
-  Zap, 
-  Heart 
-} from "lucide-react";
+import { Layers, Paintbrush, Cloud, Zap, Heart } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 
@@ -61,7 +55,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.4, 0, 0.2, 1],
+      ease: [0.4, 0, 0.2, 1] as const,
     },
   },
 };
@@ -82,7 +76,7 @@ const Strengths = () => {
         viewport={{ once: true, margin: "-100px" }}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
       >
-        {strengths.map((strength, index) => (
+        {strengths.map((strength) => (
           <motion.div key={strength.title} variants={itemVariants}>
             <Card className="h-full group">
               <div className="flex flex-col h-full">
@@ -107,4 +101,3 @@ const Strengths = () => {
 };
 
 export { Strengths };
-
