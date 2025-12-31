@@ -57,7 +57,39 @@ const Contact = () => {
   };
 
   return (
-    <Section id="contact" className="bg-background-secondary/50">
+    <Section id="contact" className="bg-background-secondary/50 relative overflow-hidden">
+      {/* Circuit Board Pattern */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+              <circle cx="50" cy="50" r="2" fill="currentColor" className="text-accent" />
+              <line x1="50" y1="50" x2="100" y2="50" stroke="currentColor" strokeWidth="1" className="text-accent" />
+              <line x1="50" y1="50" x2="50" y2="0" stroke="currentColor" strokeWidth="1" className="text-accent" />
+              <circle cx="25" cy="25" r="1.5" fill="currentColor" className="text-accent" />
+              <circle cx="75" cy="75" r="1.5" fill="currentColor" className="text-accent" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#circuit)" />
+        </svg>
+      </div>
+
+      {/* Floating brackets - responsive */}
+      <motion.div
+        className="absolute top-16 md:top-20 left-4 md:left-10 text-accent/20 font-mono text-3xl md:text-6xl pointer-events-none select-none"
+        animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      >
+        {"["}
+      </motion.div>
+      <motion.div
+        className="absolute bottom-16 md:bottom-20 right-4 md:right-10 text-accent/20 font-mono text-3xl md:text-6xl pointer-events-none select-none"
+        animate={{ y: [0, 10, 0], rotate: [0, -5, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      >
+        {"]"}
+      </motion.div>
+
       <SectionHeader
         eyebrow="Get in Touch"
         title="Let's Build Something Great"
@@ -72,8 +104,19 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="relative"
         >
-          {/* Glow Effect */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-accent/20 via-violet-500/20 to-accent/20 rounded-3xl blur-xl opacity-50" />
+          {/* Animated Glow Effect */}
+          <motion.div
+            className="absolute -inset-1 bg-gradient-to-r from-accent/20 via-orange-500/20 to-accent/20 rounded-3xl blur-xl"
+            animate={{
+              opacity: [0.3, 0.6, 0.3],
+              scale: [1, 1.02, 1],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
 
           <div className="relative bg-background-secondary border border-border rounded-2xl p-8 md:p-10">
             {isSubmitted ? (

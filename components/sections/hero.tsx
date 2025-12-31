@@ -6,11 +6,112 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 const Hero = () => {
+  // Floating code snippets
+  const codeSnippets = [
+    "const build = () => {}",
+    "function create()",
+    "npm run dev",
+    "git commit -m",
+    "async/await",
+    "{ ...spread }",
+    "=> arrow",
+    "<Component />",
+  ];
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-grid opacity-40" />
+      <div className="absolute inset-0 bg-grid opacity-60" />
       <div className="absolute inset-0 bg-noise" />
+
+      {/* Floating Code Snippets - show fewer on mobile */}
+      {codeSnippets.slice(0, 4).map((snippet, i) => (
+        <motion.div
+          key={i}
+          className={`absolute text-accent/20 font-mono text-[10px] md:text-sm font-medium pointer-events-none select-none ${
+            i > 1 ? "hidden sm:block" : ""
+          }`}
+          style={{
+            left: `${10 + i * 15}%`,
+            top: `${15 + (i % 3) * 25}%`,
+          }}
+          animate={{
+            y: [0, -20, 0],
+            opacity: [0.1, 0.3, 0.1],
+          }}
+          transition={{
+            duration: 5 + i,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 0.5,
+          }}
+        >
+          {snippet}
+        </motion.div>
+      ))}
+
+      {/* Binary Rain Effect - fewer columns on mobile */}
+      {[
+        "10110010",
+        "01101001",
+        "11010100",
+        "00101101",
+        "10011010",
+        "01110011",
+      ].map((binary, i) => (
+        <motion.div
+          key={`binary-${i}`}
+          className={`absolute text-accent/10 font-mono text-[10px] md:text-xs pointer-events-none select-none ${
+            i > 2 ? "hidden md:block" : ""
+          }`}
+          style={{
+            right: `${5 + i * 18}%`,
+            top: -20,
+          }}
+          animate={{
+            y: ["0vh", "100vh"],
+            opacity: [0, 0.3, 0],
+          }}
+          transition={{
+            duration: 15 + i * 2,
+            repeat: Infinity,
+            ease: "linear",
+            delay: i * 1.5,
+          }}
+        >
+          {binary}
+        </motion.div>
+      ))}
+
+      {/* Geometric Tech Shapes - responsive sizing */}
+      <motion.div
+        className="absolute top-16 md:top-20 right-4 md:right-20 w-16 h-16 md:w-32 md:h-32 border border-accent/20 pointer-events-none"
+        animate={{
+          rotate: 360,
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      >
+        <div className="absolute inset-2 md:inset-4 border border-accent/10" />
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-24 md:bottom-32 left-4 md:left-20 w-12 h-12 md:w-24 md:h-24 pointer-events-none"
+        animate={{
+          rotate: -360,
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      >
+        <div className="absolute inset-0 border-l-2 border-t-2 border-accent/20" />
+        <div className="absolute inset-2 border-r-2 border-b-2 border-accent/10" />
+      </motion.div>
 
       {/* Gradient Orbs */}
       <motion.div
@@ -26,7 +127,7 @@ const Hero = () => {
         }}
       />
       <motion.div
-        className="absolute bottom-1/4 -right-32 w-80 h-80 bg-violet-600/15 rounded-full blur-3xl"
+        className="absolute bottom-1/4 -right-32 w-80 h-80 bg-orange-600/15 rounded-full blur-3xl"
         animate={{
           scale: [1.2, 1, 1.2],
           opacity: [0.2, 0.4, 0.2],

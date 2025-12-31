@@ -5,7 +5,37 @@ import { Section, SectionHeader } from "@/components/ui/section";
 
 const About = () => {
   return (
-    <Section id="about" className="bg-background-secondary/50">
+    <Section id="about" className="bg-background-secondary/50 relative overflow-hidden">
+      {/* Elegant code structure decoration - visible on all screens */}
+      <motion.div
+        className="absolute left-4 md:left-8 top-24 md:top-32 font-mono text-[8px] md:text-[10px] text-accent/15 pointer-events-none select-none"
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="space-y-0.5 md:space-y-1">
+          <div><span className="text-accent/30">01</span> {"{"}</div>
+          <div className="hidden sm:block"><span className="text-accent/30">02</span>   &quot;name&quot;: &quot;Orlando&quot;,</div>
+          <div><span className="text-accent/30 sm:hidden">02</span><span className="text-accent/30 hidden sm:inline">03</span>   &quot;role&quot;: <span className="hidden sm:inline">&quot;engineer&quot;,</span><span className="sm:hidden">&quot;dev&quot;</span></div>
+          <div className="hidden sm:block"><span className="text-accent/30">04</span>   &quot;focus&quot;: &quot;impact&quot;</div>
+          <div><span className="text-accent/30 sm:hidden">03</span><span className="text-accent/30 hidden sm:inline">05</span> {"}"}</div>
+        </div>
+      </motion.div>
+
+      {/* Blinking cursor decoration - visible on all screens */}
+      <motion.div
+        className="absolute right-4 md:right-12 top-28 md:top-40 font-mono text-accent/20 pointer-events-none select-none text-[10px] md:text-sm"
+        animate={{ opacity: [0.2, 0.5, 0.2] }}
+        transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <span className="text-accent/30 text-[8px] md:text-xs">const</span>{" "}
+        <span className="text-accent/40 hidden sm:inline">purpose</span>
+        <span className="text-accent/40 sm:hidden">x</span>{" "}
+        <span className="text-accent/30">=</span>{" "}
+        <span className="text-accent/20">▊</span>
+      </motion.div>
+
       <SectionHeader
         eyebrow="About"
         title="Building with Purpose"

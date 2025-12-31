@@ -47,7 +47,7 @@ const Navigation = () => {
               href="#"
               className="text-lg font-bold text-foreground hover:text-accent transition-colors"
             >
-              ORB<span className="text-accent">.</span>
+              ORB<span className="text-accent">;</span>
             </a>
 
             {/* Desktop Navigation */}

@@ -55,7 +55,66 @@ const principles = [
 
 const Process = () => {
   return (
-    <Section id="process">
+    <Section id="process" className="relative overflow-hidden">
+      {/* Git-style decoration - responsive */}
+      <motion.div
+        className="absolute left-3 md:left-6 top-24 md:top-28 font-mono text-[8px] md:text-[10px] text-accent/15 pointer-events-none select-none"
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="flex items-center gap-1.5 md:gap-2">
+          <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-emerald-500/40" />
+          <span>main</span>
+        </div>
+        <div className="ml-0.5 md:ml-1 border-l border-accent/20 pl-2 md:pl-3 mt-1 space-y-0.5 md:space-y-1">
+          <div className="text-accent/20 hidden sm:block">feat: ship with confidence</div>
+          <div className="text-accent/20 sm:hidden">feat: ship</div>
+          <div className="text-accent/15 hidden sm:block">refactor: iterate & improve</div>
+        </div>
+      </motion.div>
+
+      {/* Pipeline operator decoration - responsive */}
+      <motion.div
+        className="absolute right-3 md:right-10 top-28 md:top-32 font-mono text-accent/15 pointer-events-none select-none"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+      >
+        {/* Mobile version - stacked */}
+        <div className="sm:hidden text-[8px] text-right space-y-0.5">
+          <div className="text-accent/25">idea → build</div>
+          <div className="text-accent/30">→ ship 🚀</div>
+        </div>
+        {/* Desktop version - horizontal */}
+        <div className="hidden sm:flex items-center gap-2 text-[11px]">
+          <span className="text-accent/25">idea</span>
+          <motion.span
+            animate={{ opacity: [0.2, 0.5, 0.2] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            |&gt;
+          </motion.span>
+          <span className="text-accent/25">build</span>
+          <motion.span
+            animate={{ opacity: [0.2, 0.5, 0.2] }}
+            transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
+          >
+            |&gt;
+          </motion.span>
+          <span className="text-accent/25">ship</span>
+          <motion.span
+            animate={{ opacity: [0.2, 0.5, 0.2] }}
+            transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
+          >
+            |&gt;
+          </motion.span>
+          <span className="text-accent/30">impact</span>
+        </div>
+      </motion.div>
+
       <SectionHeader
         eyebrow="How I Work"
         title="Process That Delivers"

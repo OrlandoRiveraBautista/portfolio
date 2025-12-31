@@ -48,17 +48,30 @@ const SectionHeader = ({
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={cn(
-        "mb-16",
+        "mb-16 relative",
         align === "center" && "text-center max-w-2xl mx-auto"
       )}
     >
       {eyebrow && (
-        <span className="inline-block text-accent text-sm font-medium tracking-wider uppercase mb-4">
-          {eyebrow}
-        </span>
+        <div className="relative inline-block mb-4">
+          <span className="font-mono text-accent/50 text-xs mr-2">//</span>
+          <span className="inline-block text-accent text-sm font-medium tracking-wider uppercase">
+            {eyebrow}
+          </span>
+        </div>
       )}
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 relative">
+        {align === "left" && (
+          <span className="absolute -left-8 top-0 text-accent/30 font-mono text-2xl select-none">
+            {"{ "}
+          </span>
+        )}
         {title}
+        {align === "left" && (
+          <span className="absolute -right-8 top-0 text-accent/30 font-mono text-2xl select-none">
+            {" }"}
+          </span>
+        )}
       </h2>
       {description && (
         <p className="text-lg text-foreground-muted leading-relaxed">

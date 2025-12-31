@@ -22,7 +22,7 @@ const Footer = () => {
               href="#"
               className="text-lg font-bold text-foreground hover:text-accent transition-colors"
             >
-              ORB<span className="text-accent">.</span>
+              ORB<span className="text-accent">;</span>
             </a>
             <p className="text-sm text-foreground-subtle">
               © {currentYear} Orlando Rivera-Bautista. All rights reserved.
@@ -49,14 +49,20 @@ const Footer = () => {
         </div>
 
         {/* Bottom Text */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center text-xs text-foreground-subtle mt-8"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8"
         >
-          Designed and built with intention.
-        </motion.p>
+          <p className="text-xs text-foreground-subtle">
+            Designed and built with intention.
+          </p>
+          <span className="hidden sm:block text-foreground-subtle/30">•</span>
+          <p className="font-mono text-[10px] text-accent/40">
+            v2.0.0 | Next.js + TypeScript
+          </p>
+        </motion.div>
       </div>
     </footer>
   );

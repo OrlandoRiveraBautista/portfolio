@@ -88,14 +88,37 @@ const projects = [
       "Transforming media operations for companies across 6 continents. Clients report 3-5x faster delivery times, 15% staff cost reductions, and 2.5x library expansion capabilities. The platform manages billions of rights and petabytes of content.",
     url: "https://www.moltencloud.com",
     image: "/molten-screenshot.png",
-    color: "from-violet-500/20 to-purple-500/20",
+    color: "from-orange-500/20 to-orange-600/20",
     note: "Team project — contributing to core platform development",
   },
 ];
 
 const Work = () => {
   return (
-    <Section id="work" className="bg-background-secondary/50">
+    <Section id="work" className="bg-background-secondary/50 relative">
+      {/* Terminal prompt decoration - responsive */}
+      <motion.div
+        className="absolute top-6 md:top-10 left-4 md:left-10 font-mono text-accent/20 text-[9px] md:text-sm pointer-events-none select-none"
+        animate={{ opacity: [0.2, 0.4, 0.2] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="hidden sm:block">$ cd ~/projects</div>
+        <div className="sm:hidden">$ ls</div>
+        <div className="mt-0.5 md:mt-1 hidden sm:block">$ ls -la</div>
+        <div className="mt-0.5 md:mt-1 text-accent/30">▊</div>
+      </motion.div>
+
+      {/* Code comment decoration - responsive */}
+      <motion.div
+        className="absolute top-6 md:top-10 right-4 md:right-10 font-mono text-accent/15 text-[8px] md:text-xs pointer-events-none select-none"
+        animate={{ opacity: [0.15, 0.25, 0.15] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="hidden sm:block">{"/* Building the future"}</div>
+        <div className="sm:hidden">{"/* Ship it */"}</div>
+        <div className="ml-3 hidden sm:block">{" one commit at a time */"}</div>
+      </motion.div>
+
       <SectionHeader
         eyebrow="Selected Work"
         title="Projects That Made an Impact"
@@ -205,9 +228,12 @@ const Work = () => {
                   index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""
                 }
               >
-                <span className="text-accent text-sm font-medium tracking-wider uppercase">
-                  {project.category}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-accent/50 font-mono text-xs">$</span>
+                  <span className="text-accent text-sm font-medium tracking-wider uppercase">
+                    {project.category}
+                  </span>
+                </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
                   {project.title}
                 </h3>
